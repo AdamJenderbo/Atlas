@@ -26,7 +26,8 @@ workspace "Atlas"
 
  includedirs
  {
-  "%{prj.name}/vendor/spdlog/include"
+  "%{prj.name}/vendor/spdlog/include",
+  "Atlas/src"
  }
 
  filter "system:windows"
