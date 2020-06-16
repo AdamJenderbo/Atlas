@@ -4,7 +4,7 @@
 	#ifdef ATLAS_BUILD_DLL
 		#define ATLAS_API __declspec(dllexport)
 	#else
-		#define ATLAS_AP __declspec(dllimport)
+		#define ATLAS_API __declspec(dllimport)
 	#endif
 #else
 	#error Atlas only supports Windows!
