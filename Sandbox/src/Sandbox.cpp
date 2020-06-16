@@ -1,11 +1,20 @@
+#include <Atlas.h>
 
-namespace Atlas
+class Sandbox : public Atlas::Application
 {
-	__declspec(dllimport) void Print();
-}
+public:
+	Sandbox()
+	{
 
-void main()
+	}
+
+	~Sandbox()
+	{
+
+	}
+};
+
+Atlas::Application* Atlas::CreateApplication()
 {
-	Atlas::Print();
-	while (true);
+	return new Sandbox();
 }

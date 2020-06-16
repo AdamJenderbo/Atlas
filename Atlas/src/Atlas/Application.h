@@ -1,0 +1,16 @@
+#pragma once
+#include "Core.h"
+
+namespace Atlas
+{
+	class __declspec(dllexport) Application
+	{
+	public:
+		Application();
+		virtual ~Application();
+
+		void Run();
+	};
+
+	Application* CreateApplication();
+}
