@@ -12,8 +12,10 @@ workspace "Atlas"
 
     IncludeDir = {}
     IncludeDir["GLFW"] = "Atlas/vendor/GLFW/include"
+    IncludeDir["Glad"] = "Atlas/vendor/Glad/include"
 
     include "Atlas/vendor/GLFW"
+    include "Atlas/vendor/Glad"
 
 project "Atlas"
     location "Atlas"
@@ -36,12 +38,14 @@ project "Atlas"
     {
         "%{prj.name}/vendor/spdlog/include",
         "Atlas/src",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}"
     }
 
     links
     {
         "GLFW",
+        "Glad",
         "opengl32.lib"
     }
 
@@ -53,7 +57,8 @@ project "Atlas"
     defines
     {
         "ATLAS_PLATFORM_WINDOWS",
-        "ATLAS_BUILD_DLL"
+        "ATLAS_BUILD_DLL",
+        "GLFW_INCLUDE_NONE"
     }
 
     postbuildcommands
