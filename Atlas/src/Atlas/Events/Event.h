@@ -68,6 +68,8 @@ namespace Atlas
 			{
 				m_Event.m_Handled = func(*(T*)&m_Event);
 			}
+
+			return m_Event.m_Handled;
 		}
 
 	private:

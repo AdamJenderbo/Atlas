@@ -34,7 +34,7 @@ namespace Atlas
 
 	void WindowsWindow::OnUpdate()
 	{
-		//glfwPollEvents();
+		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
