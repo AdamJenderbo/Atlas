@@ -19,13 +19,22 @@
     <ClInclude Include="src\Atlas\EntryPoint.h">
       <Filter>Atlas</Filter>
     </ClInclude>
+    <ClInclude Include="src\Atlas\Events\ApplicationEvent.h">
+      <Filter>Atlas\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Atlas\Events\Event.h">
+      <Filter>Atlas\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Atlas\Events\KeyEvent.h">
+      <Filter>Atlas\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Atlas\Events\MouseEvent.h">
+      <Filter>Atlas\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Atlas\Log.h">
       <Filter>Atlas</Filter>
     </ClInclude>
-    <ClInclude Include="src\Atlas\Events\Event.h" />
-    <ClInclude Include="src\Atlas\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Atlas\Events\KeyEvent.h" />
-    <ClInclude Include="src\Atlas\Events\MouseEvent.h" />
+    <ClInclude Include="src\atlaspch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Atlas\Application.cpp">
@@ -34,5 +43,6 @@
     <ClCompile Include="src\Atlas\Log.cpp">
       <Filter>Atlas</Filter>
     </ClCompile>
+    <ClCompile Include="src\atlaspch.cpp" />
   </ItemGroup>
 </Project>

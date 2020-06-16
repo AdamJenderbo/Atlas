@@ -1,63 +1,65 @@
 workspace "Atlas"
- architecture "x86_64"
+    architecture "x86_64"
 
- configurations
- {
-  "Debug",
-  "Release",
-  "Dist"
- }
+    configurations
+    {
+        "Debug",
+        "Release",
+        "Dist"
+    }
 
- outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+    outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
- project "Atlas"
- location "Atlas"
- kind "SharedLib"
- language "C++"
+project "Atlas"
+    location "Atlas"
+    kind "SharedLib"
+    language "C++"
 
- targetdir ("bin/" .. outputdir .. "/%{prj.name}")
- objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
- files
- {
-  "%{prj.name}/src/**.h",
-  "%{prj.name}/src/**.cpp"
- }
+    pchheader "atlaspch.h"
+    pchsource "Atlas/src/atlaspch.cpp"
 
- includedirs
- {
-  "%{prj.name}/vendor/spdlog/include",
-  "Atlas/src"
- }
+    files
+    {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
 
- filter "system:windows"
-  cppdialect "C++17"
-  staticruntime "On"
-  systemversion "latest"
+    includedirs
+    {
+        "%{prj.name}/vendor/spdlog/include",
+        "Atlas/src"
+    }
 
-  defines
-  {
-   "ATLAS_PLATFORM_WINDOWS",
-   "ATLAS_BUILD_DLL",
-   "TJOHOO"
-  }
+    filter "system:windows"
+    cppdialect "C++17"
+    staticruntime "On"
+    systemversion "latest"
 
-  postbuildcommands
-  {
-   ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-  }
+    defines
+    {
+        "ATLAS_PLATFORM_WINDOWS",
+        "ATLAS_BUILD_DLL"
+    }
 
- filter "configurations:Debug"
-  defines "ATLAS_DEBUG"
-  symbols "On"
+    postbuildcommands
+    {
+        ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+    }
 
- filter "configurations:Release"
-  defines "ATLAS_RELEASE"
-  optimize "On"
+    filter "configurations:Debug"
+        defines "ATLAS_DEBUG"
+        symbols "On"
 
- filter "configurations:Dist"
-  defines "ATLAS_DIST"
-  optimize "On"
+    filter "configurations:Release"
+        defines "ATLAS_RELEASE"
+        optimize "On"
+
+    filter "configurations:Dist"
+        defines "ATLAS_DIST"
+        optimize "On"
 
 project "Sandbox"
  location "Sandbox"
