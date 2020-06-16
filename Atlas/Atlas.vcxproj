@@ -157,6 +157,8 @@
     <ClInclude Include="src\Atlas\Events\Event.h" />
     <ClInclude Include="src\Atlas\Events\KeyEvent.h" />
     <ClInclude Include="src\Atlas\Events\MouseEvent.h" />
+    <ClInclude Include="src\Atlas\Layer.h" />
+    <ClInclude Include="src\Atlas\LayerStack.h" />
     <ClInclude Include="src\Atlas\Log.h" />
     <ClInclude Include="src\Atlas\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -164,6 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Atlas\Application.cpp" />
+    <ClCompile Include="src\Atlas\Layer.cpp" />
+    <ClCompile Include="src\Atlas\LayerStack.cpp" />
     <ClCompile Include="src\Atlas\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\atlaspch.cpp">
