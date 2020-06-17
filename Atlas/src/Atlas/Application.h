@@ -2,10 +2,12 @@
 #include "Core.h"
 #include "Window.h"
 #include "Events/ApplicationEvent.h"
+#include "Atlas/Layer.h"
+#include "LayerStack.h"
 
 namespace Atlas
 {
-	class __declspec(dllexport) Application
+	class ATLAS_API Application
 	{
 	public:
 		Application();
@@ -13,12 +15,24 @@ namespace Atlas
 
 		void Run();
 
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* layer);
+
 		void OnEvent(Event& e);
+		inline static Application& Get()
+		{
+			return *s_Instance;
+		}
+
+		inline Window& GetWindow() { return *m_Window; }
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
 		bool isRunning = true;
+		LayerStack layerStack;
+
+		static Application* s_Instance;
 	};
 
 	Application* CreateApplication();

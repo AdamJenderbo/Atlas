@@ -5,7 +5,7 @@ class Sandbox : public Atlas::Application
 public:
 	Sandbox()
 	{
-
+		PushLayer(new Atlas::ImGuiLayer());
 	}
 
 	~Sandbox()

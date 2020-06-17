@@ -13,9 +13,11 @@ workspace "Atlas"
     IncludeDir = {}
     IncludeDir["GLFW"] = "Atlas/vendor/GLFW/include"
     IncludeDir["Glad"] = "Atlas/vendor/Glad/include"
+    IncludeDir["ImGui"] = "Atlas/vendor/imgui"
 
     include "Atlas/vendor/GLFW"
     include "Atlas/vendor/Glad"
+    include "Atlas/vendor/imgui"
 
 project "Atlas"
     location "Atlas"
@@ -39,14 +41,16 @@ project "Atlas"
         "%{prj.name}/vendor/spdlog/include",
         "Atlas/src",
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
     }
 
     links
     {
         "GLFW",
         "Glad",
-        "opengl32.lib"
+        "ImGui",
+        "opengl32.lib",
     }
 
     filter "system:windows"
