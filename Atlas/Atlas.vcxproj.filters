@@ -69,6 +69,8 @@
     </ClInclude>
     <ClInclude Include="src\WindowsInput.h" />
     <ClInclude Include="src\atlaspch.h" />
+    <ClInclude Include="src\Atlas\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Atlas\Application.cpp">
@@ -94,5 +96,6 @@
     </ClCompile>
     <ClCompile Include="src\WindowsInput.cpp" />
     <ClCompile Include="src\atlaspch.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>
