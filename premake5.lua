@@ -105,6 +105,7 @@ project "Sandbox"
     {
         "Atlas/vendor/spdlog/include",
         "Atlas/src",
+        "Hazel/vendor",
         "%{IncludeDir.glm}"
     }
 

@@ -22,6 +22,10 @@ namespace Atlas
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
+
 	}
 
 	Application::~Application()
@@ -36,8 +40,15 @@ namespace Atlas
 			glClearColor(0.39f, 0.58f, 0.92f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			// update layers
 			for (Layer* layer : layerStack)
 				layer->OnUpdate();
+
+			// render ImGui
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : layerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}

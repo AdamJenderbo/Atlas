@@ -5,6 +5,11 @@
 #include "Atlas/Layer.h"
 #include "LayerStack.h"
 
+#include "Atlas/ImGui/ImGuiLayer.h"
+
+
+
+
 namespace Atlas
 {
 	class ATLAS_API Application
@@ -29,6 +34,8 @@ namespace Atlas
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
+		
+		ImGuiLayer* m_ImGuiLayer;
 		bool isRunning = true;
 		LayerStack layerStack;
 
