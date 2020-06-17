@@ -14,6 +14,7 @@ workspace "Atlas"
     IncludeDir["GLFW"] = "Atlas/vendor/GLFW/include"
     IncludeDir["Glad"] = "Atlas/vendor/Glad/include"
     IncludeDir["ImGui"] = "Atlas/vendor/imgui"
+    IncludeDir["glm"] = "Atlas/vendor/glm"
 
     include "Atlas/vendor/GLFW"
     include "Atlas/vendor/Glad"
@@ -33,7 +34,10 @@ project "Atlas"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}vendor/glm/glm/**.hpp",
+        "%{prj.name}vendor/glm/glm/**.inl"
+
     }
 
     includedirs
@@ -42,7 +46,8 @@ project "Atlas"
         "Atlas/src",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
     }
 
     links
@@ -99,7 +104,8 @@ project "Sandbox"
     includedirs
     {
         "Atlas/vendor/spdlog/include",
-        "Atlas/src"
+        "Atlas/src",
+        "%{IncludeDir.glm}"
     }
 
     links

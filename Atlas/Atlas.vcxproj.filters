@@ -46,6 +46,12 @@
     <ClInclude Include="src\Atlas\ImGui\ImGuiLayer.h">
       <Filter>Atlas\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Atlas\Input.h">
+      <Filter>Atlas</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Atlas\KeyCodes.h">
+      <Filter>Atlas</Filter>
+    </ClInclude>
     <ClInclude Include="src\Atlas\Layer.h">
       <Filter>Atlas</Filter>
     </ClInclude>
@@ -53,6 +59,9 @@
       <Filter>Atlas</Filter>
     </ClInclude>
     <ClInclude Include="src\Atlas\Log.h">
+      <Filter>Atlas</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Atlas\MouseButtonCodes.h">
       <Filter>Atlas</Filter>
     </ClInclude>
     <ClInclude Include="src\Atlas\Window.h">
@@ -64,13 +73,8 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\WindowsInput.h" />
     <ClInclude Include="src\atlaspch.h" />
-    <ClInclude Include="src\WindowsInput.h">
-      <Filter>Platform\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Atlas\Input.h" />
-    <ClInclude Include="src\Atlas\KeyCodes.h" />
-    <ClInclude Include="src\Atlas\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Atlas\Application.cpp">
@@ -94,9 +98,7 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\WindowsInput.cpp" />
     <ClCompile Include="src\atlaspch.cpp" />
-    <ClCompile Include="src\WindowsInput.cpp">
-      <Filter>Platform\Windows</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,6 +8,8 @@
 
 #include "Atlas/Input.h"
 
+#include "glm/glm.hpp"
+
 namespace Atlas
 {
 

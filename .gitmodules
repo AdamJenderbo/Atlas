@@ -7,3 +7,6 @@
 [submodule "Atlas/vendor/imgui"]
 	path = Atlas/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Atlas/vendor/glm"]
+	path = Atlas/vendor/glm
+	url = https://github.com/g-truc/glm
