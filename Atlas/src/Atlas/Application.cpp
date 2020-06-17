@@ -5,6 +5,9 @@
 
 #include "glad/glad.h"
 
+
+#include "Atlas/Input.h"
+
 namespace Atlas
 {
 
