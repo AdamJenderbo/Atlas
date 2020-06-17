@@ -69,6 +69,8 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Atlas\Input.h" />
+    <ClInclude Include="src\Atlas\KeyCodes.h" />
+    <ClInclude Include="src\Atlas\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Atlas\Application.cpp">
