@@ -2,9 +2,7 @@
 #include "Application.h"
 #include "Events/ApplicationEvent.h"
 #include "Atlas/Log.h"
-
-#include "glad/glad.h"
-
+#include "Atlas/Renderer/Renderer.h"
 
 #include "Atlas/Input.h"
 
@@ -17,27 +15,6 @@ namespace Atlas
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 	
 	Application* Application::s_Instance = nullptr;
-
-	// convert ShaderDataType to OpenGL data type
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-			case Atlas::ShaderDataType::Float:    return GL_FLOAT;
-			case Atlas::ShaderDataType::Float2:   return GL_FLOAT;
-			case Atlas::ShaderDataType::Float3:   return GL_FLOAT;
-			case Atlas::ShaderDataType::Float4:   return GL_FLOAT;
-			case Atlas::ShaderDataType::Mat3:     return GL_FLOAT;
-			case Atlas::ShaderDataType::Mat4:     return GL_FLOAT;
-			case Atlas::ShaderDataType::Int:      return GL_INT;
-			case Atlas::ShaderDataType::Int2:     return GL_INT;
-			case Atlas::ShaderDataType::Int3:     return GL_INT;
-			case Atlas::ShaderDataType::Int4:     return GL_INT;
-			case Atlas::ShaderDataType::Bool:     return GL_BOOL;
-		}
-
-		return 0;
-	}
 
 	Application::Application()
 	{
@@ -164,17 +141,18 @@ namespace Atlas
 	{
 		while (isRunning)
 		{
-			//glClearColor(0.39f, 0.58f, 0.92f, 1);
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.39f, 0.58f, 0.92f, 1 });
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			blueShader->Bind();
-			squareVA->Bind();
-			glDrawElements(GL_TRIANGLES, squareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(squareVA);
 
 			shader->Bind();
-			vertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(vertexArray);
+
+			Renderer::EndScene();
 
 			// update layers
 			for (Layer* layer : layerStack)
