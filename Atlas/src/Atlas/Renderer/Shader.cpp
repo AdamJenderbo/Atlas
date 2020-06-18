@@ -1,10 +1,10 @@
 #include "atlaspch.h"
 #include "Shader.h"
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
-namespace Atlas
-{
+namespace Atlas {
+
 	Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
 		// Create an empty vertex shader handle
@@ -31,6 +31,7 @@ namespace Atlas
 
 			// We don't need the shader anymore.
 			glDeleteShader(vertexShader);
+
 			return;
 		}
 
@@ -93,7 +94,6 @@ namespace Atlas
 			// Don't leak shaders either.
 			glDeleteShader(vertexShader);
 			glDeleteShader(fragmentShader);
-
 			return;
 		}
 
@@ -116,4 +116,5 @@ namespace Atlas
 	{
 		glUseProgram(0);
 	}
+
 }

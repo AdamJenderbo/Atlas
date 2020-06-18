@@ -10,9 +10,6 @@
 #include "Atlas/Renderer/Shader.h"
 #include "Atlas/Renderer/Buffer.h"
 
-
-
-
 namespace Atlas
 {
 	class ATLAS_API Application
