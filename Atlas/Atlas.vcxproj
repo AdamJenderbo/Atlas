@@ -164,8 +164,12 @@
     <ClInclude Include="src\Atlas\LayerStack.h" />
     <ClInclude Include="src\Atlas\Log.h" />
     <ClInclude Include="src\Atlas\MouseButtonCodes.h" />
+    <ClInclude Include="src\Atlas\Renderer\Buffer.h" />
     <ClInclude Include="src\Atlas\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Atlas\Renderer\Renderer.h" />
+    <ClInclude Include="src\Atlas\Renderer\Shader.h" />
     <ClInclude Include="src\Atlas\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\WindowsInput.h" />
@@ -178,6 +182,10 @@
     <ClCompile Include="src\Atlas\Layer.cpp" />
     <ClCompile Include="src\Atlas\LayerStack.cpp" />
     <ClCompile Include="src\Atlas\Log.cpp" />
+    <ClCompile Include="src\Atlas\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Atlas\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Atlas\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\WindowsInput.cpp" />
