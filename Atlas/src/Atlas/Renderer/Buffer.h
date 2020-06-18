@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace Atlas
 {
 	enum class ShaderDataType

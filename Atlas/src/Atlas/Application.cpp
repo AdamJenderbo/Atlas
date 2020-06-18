@@ -49,47 +49,49 @@ namespace Atlas
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		glGenVertexArrays(1, &vertexArray);
-		glBindVertexArray(vertexArray);
+		vertexArray.reset(VertexArray::Create()); // create VAO
 
 		float vertices[3 * 7] = {
-				-1.0f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+				-0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
 				 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 				 0.0f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f
+		}; // create vertices
+
+		std::shared_ptr<VertexBuffer> vertexBuffer; // create vertex buffer
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices))); // store vertices in vertex buffer
+		BufferLayout layout = {
+			{ ShaderDataType::Float3, "a_Position" },
+			{ ShaderDataType::Float4, "a_Color" }
+		}; // create buffer layout
+		vertexBuffer->SetLayout(layout); // set buffer layout
+		vertexArray->AddVertexBuffer(vertexBuffer); // add vertex buffer to VAO
+
+
+		uint32_t indices[3] = { 0, 1, 2 }; // create indices
+		std::shared_ptr<IndexBuffer> indexBuffer; // create index buffer
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t))); // store indices in index buffer 
+		vertexArray->SetIndexBuffer(indexBuffer); // add index buffer to VAO
+
+
+		squareVA.reset(VertexArray::Create());
+		float squareVertices[3 * 4] = {
+			-0.75f, -0.75f, 0.0f,
+			 0.75f, -0.75f, 0.0f,
+			 0.75f,  0.75f, 0.0f,
+			-0.75f,  0.75f, 0.0f
 		};
 
-		// store vertices in buffer
-		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		std::shared_ptr<VertexBuffer> squareVB;
+		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB->SetLayout({
+			{ ShaderDataType::Float3, "a_Position" }
+			});
+		squareVA->AddVertexBuffer(squareVB);
 
-		// create buffer layout
-		{
-			BufferLayout layout = {
-				{ ShaderDataType::Float3, "a_Position" },
-				{ ShaderDataType::Float4, "a_Color" }
-			};
-
-			// set layout
-			vertexBuffer->SetLayout(layout);
-		}
-
-
-		uint32_t index = 0;
-		const auto& layout = vertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
-				element.GetComponentCount(),
-				ShaderDataTypeToOpenGLBaseType(element.Type),
-				element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				(const void*)element.Offset);
-			index++;
-		}
-
-		uint32_t indices[3] = { 0, 1, 2 };
-		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		std::shared_ptr<IndexBuffer> squareIB;
+		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -125,6 +127,32 @@ namespace Atlas
 		shader.reset(new Shader(vertexSrc, fragmentSrc));
 
 
+		std::string blueShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			out vec3 v_Position;
+			void main()
+			{
+				v_Position = a_Position;
+				gl_Position = vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string blueShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			in vec3 v_Position;
+			void main()
+			{
+				color = vec4(0.2, 0.3, 0.8, 1.0);
+			}
+		)";
+
+		blueShader.reset(new Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+
+
 	}
 
 	Application::~Application()
@@ -140,10 +168,13 @@ namespace Atlas
 			glClearColor(0.1f, 0.1f, 0.1f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			blueShader->Bind();
+			squareVA->Bind();
+			glDrawElements(GL_TRIANGLES, squareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			shader->Bind();
-			glBindVertexArray(vertexArray);
-			glDrawElements(GL_TRIANGLES, indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			vertexArray->Bind();
+			glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			// update layers
 			for (Layer* layer : layerStack)

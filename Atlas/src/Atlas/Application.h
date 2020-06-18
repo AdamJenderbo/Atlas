@@ -9,6 +9,7 @@
 
 #include "Atlas/Renderer/Shader.h"
 #include "Atlas/Renderer/Buffer.h"
+#include "Atlas/Renderer/VertexArray.h"
 
 namespace Atlas
 {
@@ -38,11 +39,12 @@ namespace Atlas
 		ImGuiLayer* m_ImGuiLayer;
 		bool isRunning = true;
 		LayerStack layerStack;
-		unsigned int vertexArray;
 
-		std::unique_ptr<VertexBuffer> vertexBuffer;
-		std::unique_ptr<IndexBuffer> indexBuffer;
-		std::unique_ptr<Shader> shader;
+		std::shared_ptr<Shader> shader;
+		std::shared_ptr<VertexArray> vertexArray;
+
+		std::shared_ptr<Shader> blueShader;
+		std::shared_ptr<VertexArray> squareVA;
 
 		static Application* s_Instance;
 	};
