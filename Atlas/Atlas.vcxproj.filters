@@ -80,6 +80,8 @@
     <ClInclude Include="src\Atlas\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Atlas\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Atlas\Renderer\Camera.h" />
+    <ClInclude Include="src\Atlas\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Atlas\Application.cpp">
@@ -115,5 +117,7 @@
     <ClCompile Include="src\Atlas\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Atlas\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\Atlas\Renderer\Camera.cpp" />
+    <ClCompile Include="src\Atlas\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>

@@ -11,6 +11,10 @@
 #include "Atlas/Renderer/Buffer.h"
 #include "Atlas/Renderer/VertexArray.h"
 
+#include "Atlas/Renderer/OrthographicCamera.h"
+
+
+
 namespace Atlas
 {
 	class ATLAS_API Application
@@ -47,6 +51,9 @@ namespace Atlas
 		std::shared_ptr<VertexArray> squareVA;
 
 		static Application* s_Instance;
+
+
+		OrthographicCamera m_Camera;
 	};
 
 	Application* CreateApplication();
