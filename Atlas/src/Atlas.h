@@ -10,4 +10,15 @@
 
 #include "Atlas/ImGui/ImGuiLayer.h"
 
+
+#include "Atlas/Renderer/Renderer.h"
+#include "Atlas/Renderer/RenderCommand.h"
+
+#include "Atlas/Renderer/Buffer.h"
+#include "Atlas/Renderer/Shader.h"
+#include "Atlas/Renderer/VertexArray.h"
+
+#include "Atlas/Renderer/OrthographicCamera.h"
+
+
 #include "Atlas/EntryPoint.h"

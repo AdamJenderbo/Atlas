@@ -13,6 +13,9 @@
 
 #include "Atlas/Renderer/OrthographicCamera.h"
 
+#include "Atlas/Timestep.h"
+#include "Atlas/ImGui/ImGuiLayer.h"
+
 
 
 namespace Atlas
@@ -44,16 +47,9 @@ namespace Atlas
 		bool isRunning = true;
 		LayerStack layerStack;
 
-		std::shared_ptr<Shader> shader;
-		std::shared_ptr<VertexArray> vertexArray;
-
-		std::shared_ptr<Shader> blueShader;
-		std::shared_ptr<VertexArray> squareVA;
-
+		float m_LastFrameTime = 0.0f;
 		static Application* s_Instance;
 
-
-		OrthographicCamera m_Camera;
 	};
 
 	Application* CreateApplication();

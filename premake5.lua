@@ -1,5 +1,6 @@
 workspace "Atlas"
     architecture "x86_64"
+    startproject "Sandbox"
 
     configurations
     {
@@ -22,8 +23,10 @@ workspace "Atlas"
 
 project "Atlas"
     location "Atlas"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -59,9 +62,7 @@ project "Atlas"
     }
 
     filter "system:windows"
-    cppdialect "C++17"
-    staticruntime "On"
-    systemversion "latest"
+        systemversion "latest"
 
     defines
     {
@@ -70,10 +71,10 @@ project "Atlas"
         "GLFW_INCLUDE_NONE"
     }
 
-    postbuildcommands
-    {
-        ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-    }
+    --postbuildcommands
+    --{
+     --   ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+    --}
 
     filter "configurations:Debug"
         defines "ATLAS_DEBUG"
@@ -91,6 +92,8 @@ project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -105,7 +108,7 @@ project "Sandbox"
     {
         "Atlas/vendor/spdlog/include",
         "Atlas/src",
-        "Hazel/vendor",
+        "Atlas/vendor",
         "%{IncludeDir.glm}"
     }
 
@@ -115,8 +118,7 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
+        staticruntime "on"
         systemversion "latest"
 
     defines
@@ -126,12 +128,12 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "ATLAS_DEBUG"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "ATLAS_RELEASE"
-        optimize "On"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "ATLAS_DIST"
-        optimize "On"
+        optimize "on"

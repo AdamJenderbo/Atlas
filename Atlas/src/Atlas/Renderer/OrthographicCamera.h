@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include "Atlas/Core.h"
 
 namespace Atlas 
 {
